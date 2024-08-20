@@ -1,0 +1,35 @@
+.LoginPage--Wrapper {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    height: 100vh;
+}
+
+.LoginPage--Icon {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+
+    margin-top : 7px;
+    margin-left: 21px;
+}
+
+.LoginPage--TextBox {
+    display: flex;
+    flex-direction: column;
+    
+    margin-top : 26px;
+    margin-left: 21px;
+
+    font-family: Pretendard;
+    font-size: 30px;
+    font-weight: 400;
+}
+
+.LoginPage--Login--Btn {
+    width: calc(100% - 90px);
+    height: 59px;
+
+    margin : auto auto 110px auto;
+}
