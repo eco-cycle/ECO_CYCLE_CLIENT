@@ -5,6 +5,7 @@ import LoginPage from "../pages/LoginPage";
 import ProtectedRoute from "./ProtectedRoute"; // ProtectedRoute import
 import LocationPage from "../pages/LocationPage";
 import InfoPage from "../pages/InfoPage";
+import NotFoundPage from "../pages/NotFoundPage";
 
 const Router = createBrowserRouter([
   {
@@ -39,6 +40,10 @@ const Router = createBrowserRouter([
         ),
       },
     ],
+  },
+  {
+    path: "*",
+    element: <NotFoundPage />, // 404 페이지 추가
   },
 ]);
 

@@ -1,0 +1,44 @@
+.NotFound--Wrapper {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    height: 100vh;
+}
+
+.NotFound--Icon {
+    width: 24px;
+    height: 24px;
+
+    margin-top: 7px;
+    margin-left: 21px;
+
+    cursor: pointer;
+}
+
+.NotFound--Main {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    margin : auto 0;
+    font-family: Pretendard;
+}
+
+.NotFound--Main--Logo {
+    width: 136px;
+    height: 66px;
+}
+
+.NotFound--Main--Text {
+    margin: 30px 0;
+    
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.NotFound--Main--SubText {
+    color: #999;
+    text-align: center;
+    font-size: 15px;
+}
