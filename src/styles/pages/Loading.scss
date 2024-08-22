@@ -1,0 +1,102 @@
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+    padding: 20px; /* Add padding to prevent content from touching screen edges */
+    box-sizing: border-box;
+  }
+  
+  .loading-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+  
+  .loading-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+  
+    img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+  }
+  
+  p {
+    margin: 20px 0;
+    padding: 0 20px; /* Add padding to ensure the text doesn't touch the edges */
+    width: calc(100% - 40px); /* Full width minus padding */
+    line-height: 1.4; /* Improve readability */
+    position: absolute;
+    bottom: 100px; /* Adjust this as needed */
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: normal; /* Ensure text wraps */
+    word-break: break-word; /* Handle long words properly */
+    box-sizing: border-box; /* Ensure padding is included in width calculation */
+  }
+  
+  .pagination {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px; /* Place it at the bottom */
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+  
+    .dot {
+      height: 12px;
+      width: 12px;
+      margin: 0 5px;
+      background-color: #bbb;
+      border-radius: 50%;
+      display: inline-block;
+      transition: background-color 0.3s ease, width 0.3s ease;
+  
+      &.active {
+        width: 24px;
+        height: 12px;
+        background-color: #47ABFF;
+        border-radius: 100px;
+      }
+    }
+  }
+  
+  .skip-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: transparent;
+    border: none;
+    color: #000;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  /* Media Query for Smaller Screens */
+  @media (max-width: 600px) {
+    p {
+      margin: 10px 0;
+      font-size: 14px;
+      bottom: 80px; /* Adjust for smaller screens */
+    }
+  
+    .skip-button {
+      font-size: 14px;
+      padding: 8px 16px;
+    }
+  }
+  
