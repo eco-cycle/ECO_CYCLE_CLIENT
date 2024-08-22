@@ -37,12 +37,6 @@ const LoginPage = () => {
 
     return (
       <div className="LoginPage--Wrapper">
-        <img
-          src={backIcon}
-          alt="back-icon"
-          className="LoginPage--Icon"
-          onClick={() => navigate(-1)}
-        />
         <div className="LoginPage--TextBox">
           <div>
             eco<span style={{ color: "#47ABFF" }}>cycle</span>은 새활용 자원
