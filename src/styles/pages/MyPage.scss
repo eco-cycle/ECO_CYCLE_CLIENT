@@ -42,3 +42,41 @@
     font-size: 20px;
     font-weight: 500;
 }
+
+.MyPage--Text {
+    font-family: Pretendard;
+    font-size: 19px;
+    font-weight: 500;
+
+    margin : 17px 40px;
+}
+
+.MySettings--Wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.MySettings--Box {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    color: var(--G1, #1C1C1C);
+    font-family: Pretendard;
+}
+
+.MySettings--Box--Content {
+    display: flex;
+    align-items: center;
+
+    color: var(--G1, #1C1C1C);
+    font-family: Pretendard;
+    font-size: 16px;
+    font-weight: 600;
+
+    margin: 10px 0;
+}
+
+.MySettings--Box--Icon {
+    margin-right: 6px;
+}
