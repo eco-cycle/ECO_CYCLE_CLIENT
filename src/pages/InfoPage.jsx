@@ -3,6 +3,8 @@ import "../styles/pages/InfoPage.scss";
 
 import noProfile from "../assets/InfoPage/noProfile.png";
 import imageEdit from "../assets/InfoPage/setting.svg";
+import backBtn from "../assets/LoginPage/backIcon.svg";
+
 import { updateProfile } from "../apis/Info/apis"; // 새로 추가한 API 파일을 가져옴
 import { useNavigate } from "react-router-dom";
 
@@ -41,6 +43,12 @@ const InfoPage = () => {
 
   return (
     <div className="Info--Wrapper">
+      <img
+        src={backBtn}
+        alt="back-btn"
+        className="NotFound--Icon"
+        onClick={() => navigate(-1)}
+      />
       <div className="Info--Circle">2</div>
       <div className="Info--TextBox">
         <div>마지막입니다!</div>

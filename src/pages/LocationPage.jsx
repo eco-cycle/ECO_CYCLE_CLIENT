@@ -3,6 +3,7 @@ import { getInfo, updateInfo } from '../apis/Info/apis';
 import DaumPostcode from "react-daum-postcode";
 import { useNavigate } from 'react-router-dom';
 
+import backBtn from "../assets/LoginPage/backIcon.svg";
 import "../styles/pages/LocationPage.scss";
 
 const Modal = ({ children, onClose }) => (
@@ -48,6 +49,12 @@ const LocationPage = () => {
 
   return (
     <div className="Input--Wrapper">
+      <img
+        src={backBtn}
+        alt="back-btn"
+        className="NotFound--Icon"
+        onClick={() => navigate(-1)}
+      />
       <div className="Input--Circle">1</div>
       <div className="Input--TextBox">
         <div>내가 사는 곳의</div>

@@ -8,7 +8,7 @@ import MyInfo from "../../assets/MainPage/MyInfo.svg";
 import ActiveHome from "../../assets/MainPage/ActiveHome.svg";
 import ActiveRecycle from "../../assets/MainPage/ActiveRecycle.svg";
 import ActiveCart from "../../assets/MainPage/ActiveCart.svg";
-import ActiveMyInfo from "../../assets/MainPage/MyInfo.svg";
+import ActiveMyInfo from "../../assets/MainPage/ActiveMyInfo.svg";
 
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -67,7 +67,7 @@ const Footer = () => {
           >
             <img
               className="Footer--Menu--Icon"
-              src={activeMenu !== menu.url ? menu.src : menu.activeSrc }
+              src={activeMenu === menu.url ? menu.activeSrc : menu.src}
               alt="menu-icon"
             />
 

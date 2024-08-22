@@ -9,6 +9,7 @@ import NotFoundPage from "../pages/NotFoundPage";
 import Loading from "../pages/Loading";
 import ShopMain from "../pages/Shop/ShopMain";
 import ProductDetail from "../pages/Shop/ProductDetail";
+import MyPage from "../pages/MyPage";
 
 
 const Router = createBrowserRouter([
@@ -64,6 +65,14 @@ const Router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <MainPage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/my",
+        element: (
+          <ProtectedRoute>
+            <MyPage />
           </ProtectedRoute>
         ),
       },
