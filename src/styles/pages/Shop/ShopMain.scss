@@ -1,0 +1,20 @@
+.shop-container {
+  .shop-head {
+    display: flex;
+    justify-content: center; /* Centers content horizontally */
+    align-items: center; /* Centers content vertically */
+    flex-direction: column; /* Aligns items in a column (vertical stack) */
+    gap: 10px; /* Adds space between the heading and search */
+    padding: 20px 0; /* Adds vertical padding */
+  }
+
+  .shop-main {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two columns layout */
+    gap: 20px;
+    padding: 20px;
+    background-color: #f8f8f8;
+    height: 100vh;
+    overflow-y: auto; /* Allow scrolling if content overflows */
+  }
+}

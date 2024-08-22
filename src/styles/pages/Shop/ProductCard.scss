@@ -1,0 +1,56 @@
+.product-card {
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  width: 90%; /* Make card width 100% of its container */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  transition: transform 0.2s ease-in-out;
+  
+  /* Ensure the card maintains a good ratio */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+
+  .product-image-container {
+    height: 150px; /* Set a fixed height for the image container */
+    margin-bottom: 10px;
+    
+    .product-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;  /* Ensures the image covers the container */
+      border-radius: 4px;
+    }
+  }
+
+  .product-name {
+    font-size: 16px;
+    margin: 10px 0;
+    color: #333;
+  }
+
+  .product-price {
+    color: #f00;
+    font-weight: bold;
+    margin: 5px 0;
+  }
+
+  .product-likes {
+    margin: 5px 0;
+    color: #555;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &::before {
+      content: '❤️';
+      margin-right: 5px;
+    }
+  }
+}
