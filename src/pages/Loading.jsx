@@ -1,90 +1,105 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "../styles/pages/Loading.scss";
 
-// Import the images
-import Loading1 from '../assets/Loading/Loading1.png';
-import Loading2 from '../assets/Loading/Loading2.png';
-import Loading3 from '../assets/Loading/Loading3.png';
-import Loading4 from '../assets/Loading/Loading4.png';
+import Loading1 from "../assets/Loading/Loading1.png";
+import Loading2 from "../assets/Loading/Loading2.png";
+import Loading3 from "../assets/Loading/Loading3.png";
+import Loading4 from "../assets/Loading/Loading4.png";
 
 const Loading = () => {
-    const navigate = useNavigate();
-    const [currentIndex, setCurrentIndex] = useState(0);
+  const navigate = useNavigate();
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const containerRef = useRef(null);
 
-    const pages = [
-        {
-            text: '여러분들의 재활용 점수는 몇 점인가요?',
-            image: Loading1,
-        },
-        {
-            text: '올바른 분리 배출을 시작해 보는 건 어떨까요?',
-            image: Loading2,
-        },
-        {
-            text: '문 알에 내놓기만 하면수거해가요<br />(잘 할수록 포인트도?!)',
-            image: Loading3,
-        },
-        {
-            text: '수거된 재활용 자원은 재탄생하여<br />여러분의 곁으로 돌아갑니다!',
-            image: Loading4,
-        }
-    ];
+  const pages = [
+    {
+      text: "여러분들의 재활용 점수는 몇 점인가요?",
+      image: Loading1,
+    },
+    {
+      text: "올바른 분리 배출을 시작해 보는 건 어떨까요?",
+      image: Loading2,
+    },
+    {
+      text: "문 알에 내놓기만 하면 수거해 가요<br />(잘 할수록 포인트도?!)",
+      image: Loading3,
+    },
+    {
+      text: "수거된 재활용 자원은 재탄생하여<br />여러분의 곁으로 돌아갑니다!",
+      image: Loading4,
+    },
+  ];
 
-    const handleNavigation = (event) => {
-        const { clientX } = event;
+  useEffect(() => {
+    // Slide to the current index whenever it changes
+    const translateValue = `translateX(-${currentIndex * 100}%)`;
+    containerRef.current.style.transform = translateValue;
+  }, [currentIndex]);
 
-        // Determine the width of the screen
-        const screenWidth = window.innerWidth;
+  const handleTouchStart = (event) => {
+    containerRef.current.startX = event.touches[0].clientX;
+  };
 
-        // If the click is on the left half of the screen, go to the previous page
-        if (clientX < screenWidth / 2) {
-            handlePrevious();
-        }
-        // If the click is on the right half of the screen, go to the next page
-        else {
-            handleNext();
-        }
-    };
+  const handleTouchEnd = (event) => {
+    const endX = event.changedTouches[0].clientX;
+    const deltaX = endX - containerRef.current.startX;
 
-    const handlePrevious = () => {
-        if (currentIndex > 0) {
-            setCurrentIndex(currentIndex - 1);
-        }
-    };
+    if (deltaX > 50) {
+      handlePrevious();
+    } else if (deltaX < -50) {
+      handleNext();
+    }
+  };
 
-    const handleNext = () => {
-        if (currentIndex < pages.length - 1) {
-            setCurrentIndex(currentIndex + 1);
-        }
-    };
+  const handlePrevious = () => {
+    if (currentIndex > 0) {
+      setCurrentIndex(currentIndex - 1);
+    }
+  };
 
-    const handleSkip = () => {
-        navigate("/");
-    };
+  const handleNext = () => {
+    if (currentIndex < pages.length - 1) {
+      setCurrentIndex(currentIndex + 1);
+    }
+  };
 
-    return (
-        <div className="loading-container" onClick={handleNavigation}>
-            <div className="loading-content">
-                <div className="loading-image">
-                    <img src={pages[currentIndex].image} alt="Illustration" />
-                </div>
+  const handleSkip = () => {
+    navigate("/");
+  };
 
-                <p dangerouslySetInnerHTML={{ __html: pages[currentIndex].text }} />
-
-                <div className="pagination">
-                    {pages.map((_, index) => (
-                        <span
-                            key={index}
-                            className={`dot ${index === currentIndex ? 'active' : ''}`}
-                        ></span>
-                    ))}
-                </div>
-
-                <button className="skip-button" onClick={handleSkip}>SKIP</button>
+  return (
+    <div className="loading-container">
+      <div
+        className="loading-content"
+        ref={containerRef}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+      >
+        {pages.map((page, index) => (
+          <div className="slide" key={index}>
+            <div className="loading-image">
+              <img src={page.image} alt="Illustration" />
             </div>
-        </div>
-    );
+            <p dangerouslySetInnerHTML={{ __html: page.text }} />
+          </div>
+        ))}
+      </div>
+
+      <div className="pagination">
+        {pages.map((_, index) => (
+          <span
+            key={index}
+            className={`dot ${index === currentIndex ? "active" : ""}`}
+          ></span>
+        ))}
+      </div>
+
+      <button className="skip-button" onClick={handleSkip}>
+        SKIP
+      </button>
+    </div>
+  );
 };
 
 export default Loading;

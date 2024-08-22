@@ -13,7 +13,7 @@ import lastBlock from "../assets/MainPage/Block/lastBlock.svg";
 
 const blocks = [
   {
-    url: "/new",
+    url: "/loading",
     src: FirstBlock,
   },
   {
