@@ -11,6 +11,8 @@ import ShopMain from "../pages/Shop/ShopMain";
 import ProductDetail from "../pages/Shop/ProductDetail";
 import MyPage from "../pages/MyPage";
 import Graph from "../pages/Graph/Graph";
+import CollectionPage from "../pages/CollectionPage";
+import CreatePage from "../pages/CreatePage";
 
 
 const Router = createBrowserRouter([
@@ -63,6 +65,22 @@ const Router = createBrowserRouter([
     element: (
       <ProtectedRoute>
         <ProductDetail />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/collection",
+    element: (
+      <ProtectedRoute>
+        <CollectionPage />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/create",
+    element: (
+      <ProtectedRoute>
+        <CreatePage />
       </ProtectedRoute>
     ),
   },

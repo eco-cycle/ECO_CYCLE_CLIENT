@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import Apis from "../apis/Apis"
 
-import backIcon from '../assets/LoginPage/backIcon.svg';
 import Kakao from "../assets/LoginPage/Kakao.svg";
 
 import '../styles/pages/LoginPage.scss';
