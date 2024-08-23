@@ -1,7 +1,57 @@
-.ProgressBar--Wrapper {
-    width: 70%;
-    height: 15px;
-    
-    background-color: #e0e0de;
-    border-radius: 50px;
+.ProgressBar--Container {
+  display: flex;
+  align-items: center;
+}
+
+.ProgressBar--Circle {
+  position: relative;
+  width: 100px;
+  height: 100px;
+}
+
+.ProgressBar--Svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.ProgressBar--Bg,
+.ProgressBar--Fg {
+  fill: none;
+  stroke-width: 10;
+}
+
+.ProgressBar--Bg {
+  stroke: #e0e0de;
+}
+
+.ProgressBar--Fg {
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.5s ease;
+}
+
+.ProgressBar--Text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.ProgressBar--NextLevel {
+  margin-left: 20px;
+  text-align: left;
+
+  div:first-child {
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  .NextLevel--Name {
+    font-size: 24px;
+    color: #4a90e2;
+    font-weight: bold;
+  }
 }
