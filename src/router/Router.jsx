@@ -15,7 +15,6 @@ import ShopCart from "../pages/Shop/ShopCart";
 import CollectionPage from "../pages/CollectionPage";
 import CreatePage from "../pages/CreatePage";
 
-
 const Router = createBrowserRouter([
   {
     path: "/login",
@@ -62,7 +61,7 @@ const Router = createBrowserRouter([
     ),
   },
   {
-    path: "/shop/:id", // New Route for ProductDetail
+    path: "/shop/:id", // Route for ProductDetail
     element: (
       <ProtectedRoute>
         <ProductDetail />
@@ -77,6 +76,7 @@ const Router = createBrowserRouter([
       </ProtectedRoute>
     ),
   },
+  {
     path: "/collection",
     element: (
       <ProtectedRoute>
@@ -115,7 +115,7 @@ const Router = createBrowserRouter([
   },
   {
     path: "*",
-    element: <NotFoundPage />, // 404 페이지 추가
+    element: <NotFoundPage />, // 404 page
   },
 ]);
 
