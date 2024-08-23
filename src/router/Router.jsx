@@ -10,6 +10,7 @@ import Loading from "../pages/Loading";
 import ShopMain from "../pages/Shop/ShopMain";
 import ProductDetail from "../pages/Shop/ProductDetail";
 import MyPage from "../pages/MyPage";
+import Graph from "../pages/Graph/Graph";
 
 
 const Router = createBrowserRouter([
@@ -38,6 +39,14 @@ const Router = createBrowserRouter([
     element: (
       <ProtectedRoute>
         <Loading />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/graph",
+    element: (
+      <ProtectedRoute>
+        <Graph />
       </ProtectedRoute>
     ),
   },

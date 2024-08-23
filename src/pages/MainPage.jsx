@@ -45,7 +45,6 @@ const MainPage = () => {
     return (
       <div className="MainPage--Wrapper">
         <div className="MainPage--BackGround" />
-        <div className="MainPage--TopText">다음 등급까지</div>
         <div className="MainPage--Progress--Box">
           <ProgressBar bgcolor={"#47ABFF"} completed={20} />
           <div className="MainPage--Progress--Rate--Box">
