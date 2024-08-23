@@ -1,5 +1,5 @@
 export const GraphData = {
-  Paper: [
+  종이류: [
     { baseYear: "24.01", average: 78.6 },
     { baseYear: "24.02", average: 80.1 },
     { baseYear: "24.03", average: 81.4 },
@@ -8,7 +8,7 @@ export const GraphData = {
     { baseYear: "24.06", average: 85.0 },
     { baseYear: "24.07", average: 100.5 },
   ],
-  Plastic: [
+  플라스틱류: [
     { baseYear: "24.01", average: 915.7 },
     { baseYear: "24.02", average: 907.5 },
     { baseYear: "24.03", average: 906.7 },
@@ -17,7 +17,7 @@ export const GraphData = {
     { baseYear: "24.06", average: 955.8 },
     { baseYear: "24.07", average: 978.4 },
   ],
-  Styrofoam: [
+  스티로폼류: [
     { baseYear: "24.01", average: 869.9 },
     { baseYear: "24.02", average: 852.4 },
     { baseYear: "24.03", average: 826.4 },
@@ -26,7 +26,7 @@ export const GraphData = {
     { baseYear: "24.06", average: 734.2 },
     { baseYear: "24.07", average: 737.3 },
   ],
-  coCurrent: [
+  병류: [
     { baseYear: "24.01", average: 74.2 },
     { baseYear: "24.02", average: 83.1 },
     { baseYear: "24.03", average: 91.6 },
@@ -35,7 +35,7 @@ export const GraphData = {
     { baseYear: "24.06", average: 93.5 },
     { baseYear: "24.07", average: 93.8 },
   ],
-  Metals: [
+  금속류: [
     { baseYear: "24.01", average: 320.3 },
     { baseYear: "24.02", average: 333.2 },
     { baseYear: "24.03", average: 335.8 },
@@ -44,7 +44,7 @@ export const GraphData = {
     { baseYear: "24.06", average: 319.6 },
     { baseYear: "24.07", average: 316.5 },
   ],
-  Aluminum: [
+  알루미늄류: [
     { baseYear: "24.01", average: 1711.9 },
     { baseYear: "24.02", average: 1759.7 },
     { baseYear: "24.03", average: 1773.9 },

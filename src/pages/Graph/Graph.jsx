@@ -30,13 +30,13 @@ const Graph = (props) => {
   const { setIsGraph, setIsCamera } = props;
 
   const navigate = useNavigate();
-  const [selectedCategory, setSelectedCategory] = useState('Paper');
+  const [selectedCategory, setSelectedCategory] = useState("종이류");
 
   const data = {
     labels: GraphData[selectedCategory].map((item) => item.baseYear),
     datasets: [
       {
-        label: `${selectedCategory} Average`,
+        label: `${selectedCategory} 평균`,
         data: GraphData[selectedCategory].map((item) => item.average),
         fill: false,
         backgroundColor: '#007bff',
@@ -61,12 +61,12 @@ const Graph = (props) => {
   };
 
   const categories = [
-    { value: 'Paper', label: '종이류' },
-    { value: 'Plastic', label: '플라스틱류' },
-    { value: 'Styrofoam', label: '스티로폼류' },
-    { value: 'coCurrent', label: '병류' },
-    { value: 'Metals', label: '금속류' },
-    { value: 'Aluminum', label: '알루미늄류' },
+    { value: "종이류", label: "종이류" },
+    { value: "플라스틱류", label: "플라스틱류" },
+    { value: "스티로폼류", label: "스티로폼류" },
+    { value: "병류", label: "병류" },
+    { value: "금속류", label: "금속류" },
+    { value: "알루미늄류", label: "알루미늄류" },
   ];
 
   return (

@@ -7,11 +7,10 @@ import { useNavigate } from "react-router-dom";
 import { getImageProcessingFunc } from "../../apis/collection/apis";
 
 const Camera = (props) => {
-  const { setIsCamera, setIsResponse } = props;
+  const { setIsCamera, setIsResponse, setCapture } = props;
 
   const webcamRef = useRef(null);
   const navigate = useNavigate();
-  const [capture, setCapture] = useState(null);
 
   const capturePhoto = async () => {
     const imageSrc = webcamRef.current.getScreenshot();
