@@ -11,6 +11,9 @@ const LoginPage = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
+      sessionStorage.clear()
+    },[])
+    useEffect(() => {
       const handleSocialLogin = async () => {
         const params = new URL(document.URL).searchParams;
         const code = params.get("code");
