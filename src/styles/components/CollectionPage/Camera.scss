@@ -1,0 +1,54 @@
+.Camera--Wrapper {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    height: 100vh;
+}
+
+.Camera--TopBar {
+    display: flex;
+    flex-direction: row;
+
+    width: 100%;
+    height: 63px;
+
+    align-items: center;
+    background-color: #000;
+}
+
+.Camera--Close--Btn {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: 10px;
+}
+
+.Camera_Layout {
+    width: 100%;
+    height: calc(100vh - 163px);
+    object-fit: cover;
+}
+
+.Camera--BottomBar {
+    display: flex;
+    flex-direction: row;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 100px;
+
+    background-color: #000;
+}
+
+.Camera--Shot--Btn {
+    width: 60px;
+    height: 60px;
+    flex-shrink: 0;
+    cursor: pointer;
+}

@@ -1,0 +1,63 @@
+div {
+    font-family: Pretendard;
+}
+
+.Collection-Wrapper {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    height: 100vh;
+
+    overflow-y: scroll;
+}
+
+.Collection--Header {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+
+    width: 100%;
+    height: 60px;
+
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    align-items: center;
+}
+
+.Collection--BackIcon {
+    position: absolute;
+    cursor: pointer;
+
+    margin-left: 20px;
+}
+
+.Collection--Header--Text {
+    font-size: 20px;
+    font-weight: 500;
+
+    margin : 0 auto;
+}
+
+.Collection--Create--Btn {
+    position: fixed;
+    display: flex;
+
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    width: 120px;
+    height: 60px;
+
+    right: 13px;
+    bottom: 30px;
+
+    cursor: pointer;
+
+    background-color: #47ABFF;
+    color: white;
+
+    border-radius: 15px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
