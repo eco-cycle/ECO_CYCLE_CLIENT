@@ -95,8 +95,11 @@ const Loading = () => {
         ))}
       </div>
 
-      <button className="skip-button" onClick={handleSkip}>
-        SKIP
+      <button
+        className={`skip-button ${currentIndex === pages.length - 1 ? "complete" : ""}`}
+        onClick={handleSkip}
+      >
+        {currentIndex === pages.length - 1 ? "완료" : "SKIP"}
       </button>
     </div>
   );
