@@ -1,23 +1,29 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../styles/pages/CollectionPage.scss';
 
 import backIcon from '../assets/LoginPage/backIcon.svg';
 import searchIcon from '../assets/Shop/Search.svg'; // Add search icon
 import { useNavigate } from 'react-router-dom';
+import { getAllRecycleMyItem } from '../apis/collection/apis';
 
 const CollectionPage = () => {
     const navigate = useNavigate();
     const [filter, setFilter] = useState('all'); // State for filter
     const [searchQuery, setSearchQuery] = useState(''); // State for search query
     const [isSearchModalOpen, setIsSearchModalOpen] = useState(false); // State for modal
-
-    // Sample data for resources
+    // const [resources, setResources] = useState([]);
+    // // Sample data for resources
     const resources = [
         { id: 1, title: "페트병, 플라스틱류 외 3건", location: "천안시 동남구 상명대길 31", date: null, price: 500, type: 'sale' },
         { id: 2, title: "페트병 8개 외", location: "천안시 동남구 상명대길 31", date: null, price: 300, type: 'transaction' },
         { id: 3, title: "페트병 8개 외", location: "천안시 동남구 상명대길 31", date: null, price: 1000, type: 'transaction' },
         { id: 4, title: "페트병 8개 외", location: "천안시 동남구 상명대길 31", date: null, price: 700, type: 'sale' },
     ];
+
+    // useEffect(() => {
+    //     const res = getAllRecycleMyItem();
+    //     setResources(res);
+    // }, [])
 
     // Filter resources based on the selected filter and search query
     const filteredResources = resources.filter(resource => {

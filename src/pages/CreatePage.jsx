@@ -8,6 +8,7 @@ import { GraphData } from "../pages/Graph/GraphData";
 import Reset from '../assets/CreatePage/Reset.svg';
 import Delete from "../assets/CreatePage/Delete.svg";
 import { useNavigate } from "react-router-dom";
+import { createRecycle } from "../apis/collection/apis";
 
 const CreatePage = () => {
   const navigate = useNavigate();
@@ -20,14 +21,33 @@ const CreatePage = () => {
 
   useEffect(() => {
     if (GraphData[response]) {
-    const averageValue = GraphData[response][6].average;
-    setPrice(Math.trunc(averageValue));
+      const averageValue = GraphData[response][6].average;
+      setPrice(Math.trunc(averageValue));
     } else {
     console.log("Invalid response key");
     }
   }, [response])
 
-  console.log(price)
+  const handleSubmit = async () => {
+    // FormData에 값이 올바르게 들어가는지 확인
+    if (!capture || !response) {
+      console.error("Capture or response is not set");
+      return;
+    }
+
+    console.log("Submitting with capture:", capture);
+    console.log("Submitting with response:", response);
+    console.log("Submitting with price:", price);
+
+    try {
+      const res = await createRecycle(capture, response, price);
+      console.log("Response from server:", res);
+      navigate("/collection");
+    } catch (error) {
+      console.error("Error during form submission:", error);
+    }
+  };
+
   return (
     <>
       {isCamera && (
@@ -62,10 +82,7 @@ const CreatePage = () => {
               <img src={Delete} alt="delete" />
               <div>삭제</div>
             </div>
-            <div
-              className="Create--Register"
-              onClick={() => navigate("/collection")}
-            >
+            <div className="Create--Register" onClick={() => handleSubmit()}>
               등록
             </div>
             <div
