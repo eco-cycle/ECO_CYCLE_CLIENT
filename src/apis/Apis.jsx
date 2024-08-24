@@ -27,12 +27,13 @@ Apis.interceptors.response.use(
     let reIssueRequestDto = {
       refreshToken: sessionStorage.getItem("refreshToken"),
     };
-    if (err.response && err.response.status === 401) {
+    if (err.response && err.response.status === 401 && (err.response.data.message === "만료된 토큰")) {
       try {
         const response = await axios.post(
           process.env.REACT_APP_ENDPOINT + "/api/v1/auth/access",
           reIssueRequestDto
         );
+        console.log(response)
         if (response) {
           sessionStorage.setItem("accessToken", response.data.data.accessToken);
           sessionStorage.setItem(
