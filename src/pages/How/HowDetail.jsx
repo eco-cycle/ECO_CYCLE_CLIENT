@@ -107,7 +107,7 @@ const HowDetail = () => {
     };
 
     const handleSkip = () => {
-        navigate("/how");
+        navigate("/");
     };
 
     if (pages.length === 0) {

@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import "../../styles/pages/Shop/ProductDetail.scss";
-import ProductData from './ProductData'; // Import your ProductData file
 import Point from '../../assets/Shop/Point.svg'; // Import the Point icon
+import { postCartIn } from '../../apis/shop/apis'; // Import the postCartIn function
 
 const ProductDetail = () => {
+  const { state } = useLocation(); // Retrieve state passed from navigate
   const { product_id } = useParams(); // Retrieve the product_id from URL params
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('info'); // State to manage the active tab
 
-  // Find the product that matches the product_id from the URL
-  const product = ProductData.products.find((product) => product.product_id === parseInt(product_id));
+  // Access the product data from the state
+  const product = state?.product;
 
   // Handle case where product is not found
   if (!product) return <div>Product not found</div>;
@@ -19,14 +20,21 @@ const ProductDetail = () => {
   const formatNumber = (num) => num.toLocaleString();
 
   // Navigate to cart page
-  const handleCart = () => {
-    navigate('/cart');
+  const handleCart = async () => {
+    try {
+      await postCartIn(product.product_id); // Call the API with the product_id
+      console.log(product)
+      navigate('/cart'); // Navigate to the cart page after adding to cart
+    } catch (error) {
+      console.error("Failed to add product to cart", error);
+      // Optionally show an error message to the user
+    }
   };
 
   return (
     <div className="product-detail-container">
       <div className="product-image-container">
-        <img src={product.image} alt={product.name} className="product-image" />
+        <img src={product.titleImageUrl} alt={product.name} className="product-image" />
       </div>
       <div className="product-info">
         <div className="product-company">{product.seller}</div>
