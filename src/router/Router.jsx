@@ -17,6 +17,7 @@ import CreatePage from "../pages/CreatePage";
 import HowMain from "../pages/How/HowMain";
 import TransactionHistory from "../pages/TransactionHistory";
 import HowDetail from "../pages/How/HowDetail";
+import ShopPurchaseHistory from "../pages/Shop/ShopPurchaseHistory";
 
 const Router = createBrowserRouter([
   {
@@ -92,6 +93,14 @@ const Router = createBrowserRouter([
     element: (
       <ProtectedRoute>
         <ShopCart />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/shophistory",
+    element: (
+      <ProtectedRoute>
+        <ShopPurchaseHistory />
       </ProtectedRoute>
     ),
   },

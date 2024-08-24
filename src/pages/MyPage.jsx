@@ -71,7 +71,7 @@ const MyPage = () => {
           <MyPageSettingItem
             icon={SubList}
             text="구매 목록"
-            onNavigate={() => onNavigate("/recycle")}
+            onNavigate={() => onNavigate("/shophistory")}
           />
         </div>
       </div>

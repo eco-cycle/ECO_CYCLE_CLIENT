@@ -103,7 +103,7 @@
       }
     }
 
-    .quantity-controls {
+    .count-controls {
       display: flex;
       align-items: center;
       margin-top: 10px;
@@ -121,6 +121,13 @@
         &:hover {
           background-color: #ddd;
         }
+      }
+
+      span {
+        font-size: 16px;
+        font-weight: 500;
+        color: #333;
+        padding: 0 10px;
       }
     }
   }

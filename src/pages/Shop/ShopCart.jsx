@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import ProductData from './ProductData';
 import Point from '../../assets/Shop/Point.svg'; // Import the Point icon
 import "../../styles/pages/Shop/ShopCart.scss";
 import { useNavigate } from 'react-router-dom';
-import { getCartIn } from '../../apis/shop/apis'; // Import the getCartIn function
+import { getCartIn, delCartIn, plusCartIn, minusCartIn } from '../../apis/shop/apis'; // Import API functions
 
 const ShopCart = () => {
     const [cartItems, setCartItems] = useState([]); // Initialize with an empty array
@@ -18,28 +17,34 @@ const ShopCart = () => {
         const fetchCartItems = async () => {
             try {
                 const data = await getCartIn();
-                console.log("장바구니 데이터:",data.data);
-                setCartItems(data.data); // Assuming data is an array of cart items
-                setSelectedItems(data.map(item => item.productId)); // Select all items by default
+                console.log(data);
+                setCartItems(data.data); // Assuming data.data is an array of cart items
+                setSelectedItems(data.data.map(item => item.productId)); // Select all items by default
             } catch (error) {
                 console.error("Failed to fetch cart items", error);
-                // Optionally handle the error
             }
         };
 
         fetchCartItems();
     }, []); // Empty dependency array to run once on mount
 
-    // Fetch product details from ProductData based on product ID
-    const getProductDetails = (productId) => ProductData.products.find(product => product.productId === productId);
-
     // Update the count of items in the cart
-    const updatecount = (productId, amount) => {
-        setCartItems(prevItems =>
-            prevItems.map(item =>
-                item.productId === productId ? { ...item, count: Math.max(item.count + amount, 1) } : item
-            )
-        );
+    const updatecount = async (productId, amount) => {
+        try {
+            if (amount > 0) {
+                await plusCartIn(productId); // Call the API to increase quantity
+            } else {
+                await minusCartIn(productId); // Call the API to decrease quantity
+            }
+
+            setCartItems(prevItems =>
+                prevItems.map(item =>
+                    item.productId === productId ? { ...item, count: Math.max(item.count + amount, 1) } : item
+                )
+            );
+        } catch (error) {
+            console.error("Failed to update item count in cart", error);
+        }
     };
 
     // Toggle the selection of an item
@@ -55,35 +60,33 @@ const ShopCart = () => {
     const calculateTotal = () => {
         return cartItems.reduce((total, item) => {
             if (selectedItems.includes(item.productId)) {
-                const product = getProductDetails(item.productId);
-                const productPrice = Number(product.price); // Ensure the price is a number
+                const productPrice = Number(item.price); // Ensure the price is a number
                 return total + (productPrice * item.count);
             }
             return total;
         }, 0);
     };
 
-    // Calculate remaining points after purchase
-    useEffect(() => {
-        const total = calculateTotal();
-        setExitpoint(mypoint - total);
-    }, [mypoint, cartItems, selectedItems]);
-
-    const handleBuy = () => {
-        // Assuming the purchase is successful, deduct the points
-        setMypoint(exitpoint);
-        navigate('/');
-    };
-
     // Remove an item from the cart
-    const removeItem = (id) => {
-        setCartItems(prevItems => prevItems.filter(item => item.id !== id));
-        setSelectedItems(prevSelected => prevSelected.filter(itemId => itemId !== id));
+    const removeItem = async (productId) => {
+        try {
+            await delCartIn(productId); // Call the API to remove the item
+
+            setCartItems(prevItems => prevItems.filter(item => item.productId !== productId));
+            setSelectedItems(prevSelected => prevSelected.filter(itemId => itemId !== productId));
+        } catch (error) {
+            console.error("Failed to remove item from cart", error);
+        }
     };
 
     // Format numbers with commas
     const formatNumber = (num) => {
         return num.toLocaleString();
+    };
+
+    const handleBuy = () => {
+        navigate('/shophistory');
+
     };
 
     return (
@@ -94,36 +97,29 @@ const ShopCart = () => {
 
             {/* Map through cart items */}
             {cartItems.map(item => {
-                const product = getProductDetails(item.id);
-
-                // Ensure product exists before rendering
-                if (!product) return null;
-
                 return (
-                    <div key={item.id} className="cart-item">
+                    <div key={item.productId} className="cart-item">
                         <input
                             type="checkbox"
-                            checked={selectedItems.includes(item.id)}
-                            onChange={() => toggleSelectItem(item.id)}
+                            checked={selectedItems.includes(item.productId)}
+                            onChange={() => toggleSelectItem(item.productId)}
                         />
-                        <img src={product.image} alt={product.name} className="cart-item-image" />
+                        <img src={item.imageUrl} alt={item.name} className="cart-item-image" />
                         <div className="cart-item-details">
-                            <h3>{product.name}</h3>
+                            <h3>{item.name}</h3>
                             <h4>선택한 옵션</h4>
                             <div className="price-container">
                                 <img src={Point} alt="Point" className="point-icon" /> {/* Point icon */}
-                                {/* Display the product price directly, formatted with commas */}
-                                <h3 className="product-price">{formatNumber(parseInt(product.price))}</h3>
+                                <h3 className="product-price">{formatNumber(parseInt(item.price))}</h3>
                             </div>
                             <div className="count-controls">
-                                <button onClick={() => updatecount(item.id, -1)}>-</button>
+                                <button onClick={() => updatecount(item.productId, -1)}>-</button>
                                 <span>{item.count}</span>
-                                <button onClick={() => updatecount(item.id, 1)}>+</button>
+                                <button onClick={() => updatecount(item.productId, 1)}>+</button>
                             </div>
                         </div>
-                        {/* Display the total price for this product, formatted with commas */}
-                        <div className="total-price">{formatNumber(product.price * item.count)}</div>
-                        <button className="remove-button" onClick={() => removeItem(item.id)}>×</button>
+                        <div className="total-price">{formatNumber(item.price * item.count)}</div>
+                        <button className="remove-button" onClick={() => removeItem(item.productId)}>×</button>
                     </div>
                 );
             })}

@@ -31,6 +31,16 @@ export const getAllRecycleMyItem = async () => {
   }
 };
 
+export const getAllRecycleOtherItem = async () => {
+  try {
+    const response = await Apis.get("/api/v1/recycle/purchase");
+    return response.data;
+  } catch (error) {
+    console.error("Error processing image:", error);
+    throw error;
+  }
+};
+
 export const createRecycle = async (file, type, price) => {
   // FormData 객체 생성
   const formData = new FormData();

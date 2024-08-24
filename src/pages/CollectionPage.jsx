@@ -4,32 +4,49 @@ import '../styles/pages/CollectionPage.scss';
 import backIcon from '../assets/LoginPage/backIcon.svg';
 import searchIcon from '../assets/Shop/Search.svg'; // Add search icon
 import { useNavigate } from 'react-router-dom';
-import { getAllRecycleMyItem } from '../apis/collection/apis';
+import { getAllRecycleMyItem, getAllRecycleOtherItem } from '../apis/collection/apis';
 
 const CollectionPage = () => {
     const navigate = useNavigate();
     const [filter, setFilter] = useState('all'); // State for filter
     const [searchQuery, setSearchQuery] = useState(''); // State for search query
     const [isSearchModalOpen, setIsSearchModalOpen] = useState(false); // State for modal
-    // const [resources, setResources] = useState([]);
-    // // Sample data for resources
-    const resources = [
-        { id: 1, title: "페트병, 플라스틱류 외 3건", location: "천안시 동남구 상명대길 31", date: null, price: 500, type: 'sale' },
-        { id: 2, title: "페트병 8개 외", location: "천안시 동남구 상명대길 31", date: null, price: 300, type: 'transaction' },
-        { id: 3, title: "페트병 8개 외", location: "천안시 동남구 상명대길 31", date: null, price: 1000, type: 'transaction' },
-        { id: 4, title: "페트병 8개 외", location: "천안시 동남구 상명대길 31", date: null, price: 700, type: 'sale' },
-    ];
+    const [resources, setResources] = useState([]); // Initialize as an array
+    const [loading, setLoading] = useState(false); // State for loading
 
-    // useEffect(() => {
-    //     const res = getAllRecycleMyItem();
-    //     setResources(res);
-    // }, [])
+    useEffect(() => {
+        const fetchResources = async () => {
+            setLoading(true);
+            try {
+                let res = [];
+                if (filter === 'sale') {
+                    res = await getAllRecycleMyItem();
+                } else if (filter === 'transaction') {
+                    res = await getAllRecycleOtherItem();
+                }
+                // Extract the data from the response
+                if (res && res.data && Array.isArray(res.data)) {
+                    setResources(res.data);
+                } else {
+                    console.error('Unexpected API response format:', res);
+                    setResources([]);
+                }
+            } catch (error) {
+                console.error('Failed to fetch resources', error);
+                setResources([]);
+            } finally {
+                setLoading(false);
+            }
+        };
 
-    // Filter resources based on the selected filter and search query
-    const filteredResources = resources.filter(resource => {
-        return (filter === 'all' || resource.type === filter) &&
-            resource.title.toLowerCase().includes(searchQuery.toLowerCase());
-    });
+        fetchResources();
+    }, [filter]);
+
+
+    // // Filter resources based on the search query
+    // const filteredResources = resources.filter(resource =>
+    //     resource.title.toLowerCase().includes(searchQuery.toLowerCase())
+    // );
 
     return (
         <div className="Collection-Wrapper">
@@ -65,17 +82,20 @@ const CollectionPage = () => {
             </div>
 
             <div className="Collection--Content">
-                {filteredResources.map(resource => (
-                    <div key={resource.id} className="Resource-Card">
-                        <div className="Resource-Image"></div>
-                        <div className="Resource-Info">
-                            <div className="Resource-Title">{resource.title}</div>
-                            <div className="Resource-Location">{resource.location}</div>
-                            {resource.date && <div className="Resource-Date">{resource.date}</div>}
-                            {resource.price && <div className="Resource-Price">{resource.price}원</div>}
+                {loading ? (
+                    <div>Loading...</div>
+                ) : (
+                    resources.map(resource => (
+                        <div key={resource.id} className="Resource-Card">
+                            <img src={resource.imageUrl} alt={resource.title} className="Resource-Image" />
+                            <div className="Resource-Info">
+                                <div className="Resource-Location">{resource.location}</div>
+                                {resource.createdAt && <div className="Resource-Date">{new Date(resource.createdAt).toLocaleDateString()}</div>}
+                                {resource.price !== undefined && <div className="Resource-Price">{resource.price}원</div>}
+                            </div>
                         </div>
-                    </div>
-                ))}
+                    ))
+                )}
             </div>
 
             <div className="Collection--Create--Btn" onClick={() => navigate("/create")}>
@@ -104,6 +124,6 @@ const CollectionPage = () => {
             )}
         </div>
     );
-};
+}
 
 export default CollectionPage;

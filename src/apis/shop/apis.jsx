@@ -41,9 +41,9 @@ export const postCartIn = async (productId) => {
   }
 };
 
-export const delCartIn = async () => {
+export const delCartIn = async (productId) => {
   try {
-    const response = await Apis.delete(`/cart/{productId}`);
+    const response = await Apis.delete(`/cart/${productId}`);
     return response.data;
   } catch (error) {
     console.error("Error data in Cart:", error);
@@ -51,9 +51,9 @@ export const delCartIn = async () => {
   }
 };
 
-export const plusCartIn = async () => {
+export const plusCartIn = async (productId) => {
   try {
-    const response = await Apis.put(`/cart/plus/{productId}`);
+    const response = await Apis.put(`/cart/plus/${productId}`);
     return response.data;
   } catch (error) {
     console.error("Error data in Cart:", error);
@@ -61,19 +61,9 @@ export const plusCartIn = async () => {
   }
 };
 
-export const minusCartIn = async () => {
+export const minusCartIn = async (productId) => {
   try {
-    const response = await Apis.put(`/cart/minus/{productId}`);
-    return response.data;
-  } catch (error) {
-    console.error("Error data in Cart:", error);
-    throw error;
-  }
-};
-
-export const postPurchase = async () => {
-  try {
-    const response = await Apis.post(`/purchase`);
+    const response = await Apis.put(`/cart/minus/${productId}`);
     return response.data;
   } catch (error) {
     console.error("Error data in Cart:", error);
