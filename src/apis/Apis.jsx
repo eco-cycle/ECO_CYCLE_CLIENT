@@ -53,7 +53,7 @@ Apis.interceptors.response.use(
 );
 
 function redirectToLogin() {
-  window.location.href = "/login";
+  // window.location.href = "/login";
 }
 
 export default Apis;

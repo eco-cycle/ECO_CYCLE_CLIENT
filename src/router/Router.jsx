@@ -18,6 +18,7 @@ import HowMain from "../pages/How/HowMain";
 import TransactionHistory from "../pages/TransactionHistory";
 import HowDetail from "../pages/How/HowDetail";
 import ShopPurchaseHistory from "../pages/Shop/ShopPurchaseHistory";
+import CollectionDetailPage from "../pages/CollectionDetailPage";
 
 const Router = createBrowserRouter([
   {
@@ -109,6 +110,14 @@ const Router = createBrowserRouter([
     element: (
       <ProtectedRoute>
         <CollectionPage />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/collection/:id",
+    element: (
+      <ProtectedRoute>
+        <CollectionDetailPage />
       </ProtectedRoute>
     ),
   },
