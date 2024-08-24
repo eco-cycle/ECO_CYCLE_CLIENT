@@ -9,6 +9,8 @@ import FirstBlock from "../assets/MainPage/Block/firstBlock.svg";
 import SecondBlock from "../assets/MainPage/Block/SecondBlock.svg";
 import ThirdBlock from "../assets/MainPage/Block/ThirdBlock.svg";
 import lastBlock from "../assets/MainPage/Block/lastBlock.svg";
+import Transaction from '../components/MainPage/Transaction';
+import MyPoint from '../components/MainPage/MyPoint';
 
 
 const blocks = [
@@ -41,17 +43,13 @@ const MainPage = () => {
     });
   }, []);
 
-
     return (
       <div className="MainPage--Wrapper">
         <div className="MainPage--BackGround" />
         <div className="MainPage--Progress--Box">
-          <ProgressBar bgcolor={"#47ABFF"} completed={20} />
-          <div className="MainPage--Progress--Rate--Box">
-            <div className="MainPage--Progress--Rate">2&nbsp;</div>
-            <div className="MainPage--Progress--Rate--Text">/&nbsp;</div>
-            <img src={ProgressStar} alt="star" />
-          </div>
+          <ProgressBar bgcolor={"#47ABFF"} completed={25} />
+          <Transaction bgcolor={"#47ABFF"} completed={6} />
+          <MyPoint bgcolor={"#47ABFF"} completed={20000} />
         </div>
         <div className="MainPage--Blocks">
           {blocks.map((block, index) => (

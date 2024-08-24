@@ -1,63 +1,175 @@
-div {
-    font-family: Pretendard;
-}
-
 .Collection-Wrapper {
     display: flex;
     flex-direction: column;
-
     width: 100%;
     height: 100vh;
-
-    overflow-y: scroll;
+    overflow-y: auto; // Changed from scroll to auto for better handling
 }
 
 .Collection--Header {
-    position: relative;
     display: flex;
-    flex-direction: row;
-
+    align-items: center;
+    justify-content: space-between;
     width: 100%;
     height: 60px;
-
+    padding: 0 20px;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    align-items: center;
+    box-sizing: border-box; // Ensures padding is included in width
+}
+
+.Collection--BackIcon,
+.Collection--SearchIcon {
+    cursor: pointer;
 }
 
 .Collection--BackIcon {
-    position: absolute;
-    cursor: pointer;
-
-    margin-left: 20px;
+    margin-right: 20px;
 }
 
 .Collection--Header--Text {
     font-size: 20px;
     font-weight: 500;
+    flex: 1;
+    text-align: center;
+}
 
-    margin : 0 auto;
+.Collection--SearchIcon {
+    margin-left: 20px;
+}
+
+.Collection--Filter {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin: 10px 0;
+}
+
+.Collection--Filter--Btn {
+    flex: 1;
+    background-color: #f0f0f0;
+    border: none;
+    padding: 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.Collection--Filter--Btn.active {
+    background-color: #ddd;
+    font-weight: bold;
+}
+
+.Collection--Content {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.Resource-Card {
+    display: flex;
+    flex-direction: row;
+    padding: 15px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+}
+
+.Resource-Image {
+    width: 60px;
+    height: 60px;
+    background-color: #e0e0e0;
+    border-radius: 8px;
+    margin-right: 15px;
+}
+
+.Resource-Info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.Resource-Title {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.Resource-Location {
+    font-size: 14px;
+    color: #777;
+    margin: 5px 0;
+}
+
+.Resource-Date,
+.Resource-Price {
+    font-size: 14px;
+    color: #333;
 }
 
 .Collection--Create--Btn {
     position: fixed;
     display: flex;
-
     text-align: center;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-
     width: 120px;
     height: 60px;
-
     right: 13px;
     bottom: 30px;
-
     cursor: pointer;
-
     background-color: #47ABFF;
     color: white;
-
     border-radius: 15px;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.Collection--SearchModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.Collection--SearchModal--Content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%;  // Adjusted to ensure it's not too wide
+    max-width: 500px;
+    position: relative;
+    box-sizing: border-box; // Ensure padding is included in the width
+}
+
+.Collection--SearchInput {
+    width: 100%;
+    max-width: 100%; // Ensure input doesn't overflow the content area
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; // Ensure padding is included in the width
+}
+
+.Collection--SearchModal--Close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #ff5c5c;
+    border: none;
+    color: white;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 16px;
 }

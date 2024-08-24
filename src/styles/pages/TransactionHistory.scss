@@ -1,0 +1,76 @@
+.transaction-history {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #f5f5f5;
+
+  .transaction-header {
+    background-color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid #e0e0e0;
+    margin-bottom: 20px;
+
+    .title {
+      font-size: 20px;
+      font-weight: bold;
+    }
+  }
+
+  .transaction-list {
+    flex-grow: 1;
+    padding: 10px;
+    overflow-y: auto;
+  }
+
+  .transaction-item {
+    background-color: white;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;  // This will create space between left (details) and right (status)
+    align-items: flex-start;
+
+    .transaction-details {
+      display: flex;
+      flex-direction: column;  // Stack date, location, and items vertically
+      flex-grow: 1;
+
+      .transaction-date {
+        font-size: 14px;
+        color: #888;
+        margin-bottom: 5px;  // Add spacing below date
+      }
+
+      .transaction-location {
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+
+      .transaction-items {
+        font-size: 14px;
+        color: #555;
+      }
+    }
+
+    .transaction-status {
+      font-size: 14px;
+      color: #444444;
+      align-self: flex-start;  // Align to top-right for status text
+
+      &.completed {
+        color: #007bff;  // Green for completed
+      }
+
+      &.in-progress {
+        color: #444444;  // Orange for in-progress
+      }
+    }
+  }
+}

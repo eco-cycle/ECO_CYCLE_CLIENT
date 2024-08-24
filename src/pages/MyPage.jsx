@@ -48,7 +48,7 @@ const MyPage = () => {
         </div>
       </div>
       <div className="MyPage--Text">
-        eco<span style={{ color: "#47ABFF" }}>cycle</span>을 총 12번
+        eco<span style={{ color: "#47ABFF" }}>cycle</span>을 총 6번
         참여해주셨어요!
       </div>
       <div className="MySettings--Wrapper">
@@ -71,7 +71,7 @@ const MyPage = () => {
           <MyPageSettingItem
             icon={SubList}
             text="구매 목록"
-            onNavigate={() => onNavigate("/buylist")}
+            onNavigate={() => onNavigate("/recycle")}
           />
         </div>
       </div>

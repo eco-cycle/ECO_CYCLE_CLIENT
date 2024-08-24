@@ -22,13 +22,9 @@ const ProgressBar = (props) => {
           ></circle>
         </svg>
         <div className="ProgressBar--Text">
-          <div>{currentLevel}</div>
+          <div className="ProgressBar--Label">진행도</div>
           <div>{completed}%</div>
         </div>
-      </div>
-      <div className="ProgressBar--NextLevel">
-        <div>다음 등급</div>
-        <div className="NextLevel--Name">{nextLevel}</div>
       </div>
     </div>
   );

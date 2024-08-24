@@ -7,14 +7,20 @@ import HeartIcon from '../../assets/Shop/Heart.svg'; // Assuming you have a hear
 const ProductCard = ({ product }) => {
   const navigate = useNavigate();
 
+  const formatNumber = (num) => {
+    return num.toLocaleString();
+};
+
   const handleCardClick = () => {
     navigate(`/shop/${product.id}`);
   };
 
+  
+
   return (
     <div className="product-card" onClick={handleCardClick}>
       <div className="product-image-container">
-        <img src={product.image} alt={product.name} className="product-image" />
+        <img src={product.titleImageUrl} alt={product.name} className="product-image" />
       </div>
       <div className="product-info">
         <p className="product-description">{product.description}</p>
@@ -22,7 +28,7 @@ const ProductCard = ({ product }) => {
         <img src={HeartIcon} alt="Heart" className="heart-icon" /> {/* Heart icon */}
         <div className="price-container">
           <img src={Point} alt="Point" className="point-icon" /> {/* Point icon */}
-          <h3 className="product-price">{product.price}</h3>
+          <h3 className="product-price">{formatNumber(product.price)}</h3>
         </div>
       </div>
     </div>

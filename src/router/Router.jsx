@@ -14,6 +14,9 @@ import Graph from "../pages/Graph/Graph";
 import ShopCart from "../pages/Shop/ShopCart";
 import CollectionPage from "../pages/CollectionPage";
 import CreatePage from "../pages/CreatePage";
+import HowMain from "../pages/How/HowMain";
+import TransactionHistory from "../pages/TransactionHistory";
+import HowDetail from "../pages/How/HowDetail";
 
 const Router = createBrowserRouter([
   {
@@ -41,6 +44,22 @@ const Router = createBrowserRouter([
     element: (
       <ProtectedRoute>
         <Loading />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/how",
+    element: (
+      <ProtectedRoute>
+        <HowMain />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/how/:category",
+    element: (
+      <ProtectedRoute>
+        <HowDetail />
       </ProtectedRoute>
     ),
   },
@@ -89,6 +108,14 @@ const Router = createBrowserRouter([
     element: (
       <ProtectedRoute>
         <CreatePage />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/recycle",
+    element: (
+      <ProtectedRoute>
+        <TransactionHistory />
       </ProtectedRoute>
     ),
   },
