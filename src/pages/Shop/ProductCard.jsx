@@ -9,13 +9,12 @@ const ProductCard = ({ product }) => {
 
   const formatNumber = (num) => {
     return num.toLocaleString();
-};
-
-  const handleCardClick = () => {
-    navigate(`/shop/${product.id}`);
   };
 
-  
+  const handleCardClick = () => {
+    // Pass the product data as state while navigating to the product detail page
+    navigate(`/shop/${product.product_id}`, { state: { product } });
+  };
 
   return (
     <div className="product-card" onClick={handleCardClick}>
